@@ -1,8 +1,8 @@
 {
-  "name": "typescript-template",
+  "name": "env-s3ync",
   "version": "1.0.0",
   "main": "dist/index.js",
-  "repository": "https://github.com/danieluhm2004/typescript-template.git",
+  "repository": "https://github.com/danieluhm2004/env-s3nc.git",
   "author": "danieluhm2004 <iam@dan.al>",
   "license": "MIT",
   "scripts": {
@@ -20,9 +20,14 @@
     "clean": "rm -rf dist/"
   },
   "dependencies": {
-    "dotenv-cli": "^4.0.0"
+    "@types/commander": "^2.12.2",
+    "aws-sdk": "^2.972.0",
+    "commander": "^8.1.0",
+    "dotenv-cli": "^4.0.0",
+    "joi": "^17.4.2"
   },
   "devDependencies": {
+    "@types/aws-sdk": "^2.7.0",
     "@types/eslint": "^7.28.0",
     "@types/eslint-plugin-prettier": "^3.1.0",
     "@types/node": "^16.4.3",

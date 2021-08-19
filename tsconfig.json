@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
     "inlineSources": true,
     "module": "commonjs",
     "outDir": "./dist",
