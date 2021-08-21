@@ -6,8 +6,10 @@ import {
   onUploadCommand,
 } from '.';
 import { name, version } from '../package.json';
+import { onStageCreateCommand } from '.';
 
 export * from './commands';
+export * from './controllers';
 export * from './tools';
 
 async function main() {
@@ -38,8 +40,16 @@ async function main() {
     const stageAddCommand = stageCommand
       .command('create <stage>')
       .description('Create a new stage.')
-      .requiredOption('-l, --local <local>', 'Enter the stage file name.')
-      .requiredOption('-b, --b <bucket>', 'Enter a bucket name.');
+      .requiredOption('-b, --bucket <bucket>', 'Enter a bucket name.')
+      .option(
+        '-l, --local <local>',
+        'Enter the stage file name. (default: .env.{name})'
+      )
+      .option(
+        '-t, --target <target>',
+        'Enter a target file name. (default: .env)'
+      )
+      .action(onStageCreateCommand);
 
     const stageRemoveCommand = stageCommand
       .command('remove <stage>')
