@@ -45,7 +45,7 @@ export function findConfigPath(): string {
   for (let i = 0; i <= 5; i++) {
     const path = `${dots}/${configFile}`;
     if (existsSync(path)) return path;
-    dots += '../';
+    dots += '/..';
   }
 
   throw new EnvS3ncError(`Cannot find ${configFile}`);
