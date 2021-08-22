@@ -1,6 +1,4 @@
-import { loadConfig } from '../..';
-import { Stage } from '../../controllers';
-import { EnvS3ncError } from '../../tools';
+import { EnvS3ncError, Stage } from '../..';
 
 export async function onStageCreateCommand(
   name: string,

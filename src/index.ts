@@ -3,10 +3,11 @@ import {
   EnvS3ncError,
   onDownloadCommand,
   onInitCommand,
+  onStageCreateCommand,
+  onStageRemoveCommand,
   onUploadCommand,
 } from '.';
 import { name, version } from '../package.json';
-import { onStageCreateCommand } from '.';
 
 export * from './commands';
 export * from './controllers';
@@ -54,8 +55,8 @@ async function main() {
     const stageRemoveCommand = stageCommand
       .command('remove <stage>')
       .description('Delete the existing stage.')
-      .option('-a, --all', 'Delete all stages.')
-      .requiredOption('-c, --confirm', 'Confirm deletion.');
+      .requiredOption('-c, --confirm', 'Confirm deletion.')
+      .action(onStageRemoveCommand);
 
     await program.parseAsync(process.argv);
   } catch (err) {

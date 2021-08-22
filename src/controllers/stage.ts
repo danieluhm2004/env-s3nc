@@ -44,4 +44,10 @@ export class Stage {
     config.stages.push(stage);
     await saveConfig(config);
   }
+
+  public static async removeStage(stage: StageInterface): Promise<void> {
+    const config = await loadConfig();
+    config.stages = config.stages.filter(({ name }) => name !== stage.name);
+    await saveConfig(config);
+  }
 }
