@@ -1,4 +1,4 @@
-import { writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import Joi from 'joi';
 import { join } from 'path';
 import { cwd, loadConfig, s3, saveConfig } from '..';
@@ -36,6 +36,16 @@ export class Stage {
     const res = await s3.getObject({ Bucket: bucket, Key: key }).promise();
     if (!(res.Body instanceof Buffer)) throw Error();
     writeFileSync(path, res.Body.toString());
+  }
+
+  public static async uploadToBucket(stage: StageInterface): Promise<void> {
+    const { target, local, bucket } = stage;
+    const workspace = cwd.split('/').reverse()[0];
+    const path = join(cwd, local);
+    const key = join(workspace, target);
+    const body = readFileSync(path);
+    const options = { Bucket: bucket, Key: key, Body: body };
+    await s3.putObject(options).promise();
   }
 
   public static async addStage(stage: StageInterface): Promise<void> {

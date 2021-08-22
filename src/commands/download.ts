@@ -26,7 +26,7 @@ export async function onDownloadCommand(options: {
       console.log(`Successfully downloaded the ${stage.name} stage.`);
     } catch (err) {
       console.warn(
-        `Unable to get file from ${stage.bucket} on stage ${stage.name}. The file does not exist or you do not have enough permissions.`
+        `Unable to download ${stage.name} stage. The file does not exist or you do not have enough permissions.`
       );
     }
   }

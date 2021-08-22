@@ -18,17 +18,18 @@ async function main() {
     program.name(name);
     program.version(version);
 
-    const initCommand = program
+    program
       .command('init')
       .description('Initialize the config')
       .action(onInitCommand);
 
-    const uploadCommand = program
+    program
       .command('upload')
       .description('Upload to S3')
+      .option('-s, --stage <stage>', 'Download only specific stages.')
       .action(onUploadCommand);
 
-    const downloadCommand = program
+    program
       .command('download')
       .description('Download from S3')
       .option('-s, --stage <stage>', 'Download only specific stages.')
@@ -38,7 +39,7 @@ async function main() {
       .command('stage')
       .description('Create, delete, and manage stages.');
 
-    const stageAddCommand = stageCommand
+    stageCommand
       .command('create <stage>')
       .description('Create a new stage.')
       .requiredOption('-b, --bucket <bucket>', 'Enter a bucket name.')
@@ -52,7 +53,7 @@ async function main() {
       )
       .action(onStageCreateCommand);
 
-    const stageRemoveCommand = stageCommand
+    stageCommand
       .command('remove <stage>')
       .description('Delete the existing stage.')
       .requiredOption('-c, --confirm', 'Confirm deletion.')
